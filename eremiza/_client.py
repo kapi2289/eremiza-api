@@ -33,3 +33,7 @@ class Client:
 
     def login(self):
         self.user = self._get("/User/GetUser")
+
+    def get_alarms(self, count=3, offset=0):
+        return self._get("/Alarm/GetAlarmList",
+                         params={"ouId": self.user["bsisOuId"], "count": count, "offset": offset})
