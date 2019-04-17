@@ -45,8 +45,12 @@ class Alarm:
     expiration = related.DateTimeField(required=False)
     latitude = related.FloatField(required=False)
     longitude = related.FloatField(required=False)
-    location_accuracy = related.ChildField(LocationAccuracy, key="locAccuracy", required=False)
-    distance_to_fire_station = related.FloatField(key="distanceToFireStation", required=False)
+    location_accuracy = related.ChildField(
+        LocationAccuracy, key="locAccuracy", required=False
+    )
+    distance_to_fire_station = related.FloatField(
+        key="distanceToFireStation", required=False
+    )
     adm_territory = related.StringField(key="admTeryt", required=False)
     locality = related.StringField(required=False)
     street = related.StringField(required=False)
