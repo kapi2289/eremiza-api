@@ -51,6 +51,7 @@ class Alarm:
     locality = related.StringField(required=False)
     street = related.StringField(required=False)
     address_point = related.StringField(key="addrPoint", required=False)
+    apartment = related.StringField(required=False)
     notified = related.IntegerField(required=False)
     confirmed = related.IntegerField(required=False)
     declined = related.IntegerField(required=False)
@@ -64,3 +65,16 @@ class Alarm:
     deleted = related.BooleanField(required=False)
     swd_id = related.IntegerField(key="swdId", required=False)
     id = related.IntegerField(required=False)
+
+    @property
+    def address(self):
+        result = ""
+        if self.locality:
+            result += self.locality.strip()
+        if self.street:
+            result += ", {}".format(self.street.strip())
+        if self.address_point:
+            result += " {}".format(self.address_point.strip())
+            if self.apartment:
+                result += "/{}".format(self.apartment.strip())
+        return result
