@@ -1,5 +1,7 @@
 import requests
+from related import to_model
 
+from ._alarm import Alarm
 from ._utils import gen_jwt
 
 
@@ -35,5 +37,6 @@ class Client:
         self.user = self._get("/User/GetUser")
 
     def get_alarms(self, count=3, offset=0):
-        return self._get("/Alarm/GetAlarmList",
-                         params={"ouId": self.user["bsisOuId"], "count": count, "offset": offset})
+        alarms = self._get("/Alarm/GetAlarmList",
+                           params={"ouId": self.user["bsisOuId"], "count": count, "offset": offset})
+        return [to_model(Alarm, alarm) for alarm in alarms]

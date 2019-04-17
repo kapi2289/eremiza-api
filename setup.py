@@ -16,5 +16,5 @@ setup(
     author="Kacper Ziubryniewicz",
     author_email="kapi2289@gmail.com",
     license="MIT",
-    install_requires=["requests", "PyJWT"],
+    install_requires=["requests", "PyJWT", "related", "aenum"],
 )
